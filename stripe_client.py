@@ -2,7 +2,7 @@ import stripe
 
 
 def create_payment_intent(amount: int, currency: str) -> dict:
-    """Create a Stripe payment intent — uses deprecated card number field."""
+    """Create a Stripe payment intent — uses updated card details field."""
     payment_intent = stripe.PaymentIntent.create(
         amount=amount,
         currency=currency,
@@ -15,5 +15,6 @@ def create_payment_intent(amount: int, currency: str) -> dict:
                 "cvc": "123",
             },
         },
+        payment_method_types=["card"],
     )
     return {"id": payment_intent.id, "status": payment_intent.status}
