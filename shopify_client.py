@@ -14,7 +14,7 @@ def get_products(shop_domain: str, access_token: str) -> list:
 
 
 def create_order(shop_domain: str, access_token: str, order_data: dict) -> dict:
-    """Create order — uses deprecated line_items.fulfillment_service field."""
+    """Create order — uses updated line_items and fulfillment_service fields."""
     url = f"https://{shop_domain}/admin/api/{SHOPIFY_API_VERSION}/orders.json"
     headers = {
         "X-Shopify-Access-Token": access_token,
@@ -27,7 +27,7 @@ def create_order(shop_domain: str, access_token: str, order_data: dict) -> dict:
                 {
                     "variant_id": 12345,
                     "quantity": 1,
-                    "fulfillment_service": "manual",  # deprecated field
+                    "fulfillment_service_id": 12345,  # updated field
                 }
             ],
         }
