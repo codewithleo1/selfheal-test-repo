@@ -6,7 +6,7 @@ def create_payment_intent(amount: int, currency: str) -> dict:
         'https://api.stripe.com/v1/payment_intents',
         headers={'Authorization': 'Bearer sk_test_placeholder'},
         data={
-            'amount': amount,
+            'amount': amount * 100,  # Stripe requires amount to be in cents
             'currency': currency,
             'payment_method_types': ['card'],
         },
