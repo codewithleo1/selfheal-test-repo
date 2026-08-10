@@ -1,19 +1,14 @@
-import stripe
+import httpx
 
 
 def create_payment_intent(amount: int, currency: str) -> dict:
-    """Create a Stripe payment intent — uses deprecated card number field."""
-    payment_intent = stripe.PaymentIntent.create(
-        amount=amount,
-        currency=currency,
-        payment_method_data={
-            "type": "card",
-            "card": {
-                "number": "4242424242424242",
-                "exp_month": 12,
-                "exp_year": 2025,
-                "cvc": "123",
-            },
+    response = httpx.post(
+        'https://api.stripe.com/v1/payment_intents',
+        headers={'Authorization': 'Bearer sk_test_placeholder'},
+        data={
+            'amount': amount,
+            'currency': currency,
+            'payment_method_types': ['card'],
         },
     )
-    return {"id": payment_intent.id, "status": payment_intent.status}
+    return response.json()
