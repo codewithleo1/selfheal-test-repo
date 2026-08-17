@@ -9,6 +9,7 @@ def create_payment_intent(amount: int, currency: str) -> dict:
             'amount': amount * 100,  # Stripe requires amount to be in cents
             'currency': currency,
             'payment_method_types': ['card'],
+            'payment_method': 'pm_card_visa',  # Example payment method
         },
     )
     return response.json()
