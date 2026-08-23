@@ -1,6 +1,9 @@
 import httpx
 
 
+import httpx
+
+
 def create_payment_intent(amount: int, currency: str) -> dict:
     response = httpx.post(
         'https://api.stripe.com/v1/payment_intents',
