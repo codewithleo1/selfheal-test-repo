@@ -8,7 +8,7 @@ def create_payment_intent(amount: int, currency: str) -> dict:
         data={
             "amount": amount * 100,
             "currency": currency,
-            "payment_method_types": ["card"],
+            "payment_method": "pm_card_visa",
         },
     )
     return response.json()
